@@ -1,6 +1,6 @@
 <?php
 
-include_once '../models/store.php';
+include_once __DIR__ . '/../models/store.php';
 
 $number_card = $_POST['number_card'];
 $mm_yy = $_POST['mm_yy'];

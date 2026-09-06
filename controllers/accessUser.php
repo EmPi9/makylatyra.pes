@@ -1,6 +1,6 @@
-<?
-include_once '../models/authentication.php';
-include_once './../models/connection.php';
+<?php
+include_once __DIR__ . '/../models/authentication.php';
+include_once __DIR__ . '/../models/connection.php';
 $id = $_GET['id'];
 $admin = "1";
 

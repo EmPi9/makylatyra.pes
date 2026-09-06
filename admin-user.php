@@ -50,12 +50,12 @@ $users = $statement->fetchAll(PDO::FETCH_ASSOC);
                 </th>
                 <td class="px-6 py-4">
                 <a href="controllers/accessUser.php?id=<?=$user['id']?>" class="font-medium text-green-600 dark:text-blue-500 hover:underline">Повысить</a>
-                <?
-                        if ($user['admin'] === 1): ?>
+                <?php
+                        if ((int)$user['admin'] === 1): ?>
                             Админ
-                            <? else: ?>
+                            <?php else: ?>
                                 Пользователь
-                        <? endif; ?>
+                        <?php endif; ?>
 
                 <a href="controllers/rejectUser.php?id=<?=$user['id']?>" class="font-medium text-red-600 dark:text-blue-500 hover:underline">Понизить</a>
                 </td>

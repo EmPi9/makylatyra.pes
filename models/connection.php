@@ -14,7 +14,7 @@ class Connection {
     }
 
     public function connect() {
-        $params = parse_ini_file('db.ini');
+        $params = parse_ini_file(__DIR__ . '/db.ini');
         if ($params === false) {
             echo ('Error. Не удалось найти файла с настройками подключения');
             die();

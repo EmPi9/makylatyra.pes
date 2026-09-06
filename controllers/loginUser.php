@@ -1,6 +1,6 @@
 <?php
-include_once './../models/connection.php';
-include_once './../models/authentication.php';
+include_once __DIR__ . '/../models/connection.php';
+include_once __DIR__ . '/../models/authentication.php';
 
 $login = $_POST['login'];
 $password = $_POST['password'];

@@ -1,11 +1,19 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include_once 'connection.php';
-$newFilename = uploadImage($_FILES['image'],$filename);
+
 function uploadImage($image) {
-    $extension = pathinfo($image['name'], PATHINFO_EXTENSION); // узнаем расширение файла
-    $filename = uniqid() . "." . $extension; // делаем уникальное название файла и добавляем в конец расширение
-    move_uploaded_file($image['tmp_name'], "./../assets/img/" . $filename);
+    if (!isset($image['tmp_name']) || !is_uploaded_file($image['tmp_name'])) {
+        return '';
+    }
+    $extension = pathinfo($image['name'] ?? '', PATHINFO_EXTENSION);
+    if ($extension === '') {
+        $extension = 'jpg';
+    }
+    $filename = uniqid() . '.' . $extension;
+    move_uploaded_file($image['tmp_name'], __DIR__ . '/../assets/img/' . $filename);
     return $filename;
 }
 

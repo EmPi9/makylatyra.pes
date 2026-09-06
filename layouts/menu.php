@@ -1,15 +1,12 @@
-<? session_start();
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include './models/authentication.php';
 include './models/connection.php';
 $pdo = Connection::get()->connect();
 $auth = new Authentication($pdo);
 $user = $auth->getCurrentUser();
-session_start();
-$num = 0;
-setcookie('count', $_POST['but']);
-if(isset($_COOKIE['but'])){
-    echo'Вы нажали на кнопку '.$num. ' раз';
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +17,7 @@ if(isset($_COOKIE['but'])){
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>makulatyrapes.com</title>
 </head>
@@ -67,18 +64,18 @@ if(isset($_COOKIE['but'])){
                                 class="py-4 px-2 text-white font-semibold hover:text-[#F56E1E] transition duration-300"
                         >КОНЦЕРТЫ</a
                         >
-                        <?
-                        if ($user['admin'] === 1): ?>
+                        <?php
+                        if (!empty($user['admin']) && (int)$user['admin'] === 1): ?>
                             <a
                                     href="admin-panel.php"
                                     class="py-4 px-2 text-white font-semibold hover:text-[#F56E1E] transition duration-300"
                             >АДМИН ПАНЕЛЬ</a>
-                        <? endif; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
 
                 <div class="hidden md:flex items-center space-x-3 justify-center">
-                    <?
+                    <?php
                     if (!isset($_SESSION['user'])): ?>
                     <a href="login.php"  class="py-4 px-2 text-white font-semibold hover:text-[#F56E1E] transition duration-300">
                             АВТОРИЗАЦИЯ
@@ -87,7 +84,7 @@ if(isset($_COOKIE['but'])){
                     <a href="registration.php"   class="py-4 px-2 text-white font-semibold hover:text-[#F56E1E] transition duration-300">
                             РЕГИСТРАЦИЯ
                     </a>
-                    <?else: ?>
+                    <?php else: ?>
                         <a href="bin.php"  class="py-4 px-2 text-white font-semibold hover:text-[#F56E1E] transition duration-300">
                             КОРЗИНА <span id="productCount"></span>
 
@@ -140,7 +137,7 @@ if(isset($_COOKIE['but'])){
                     >КОНЦЕРТЫ</a
                     >
                 </li>
-                <?
+                <?php
                 if (!isset($_SESSION['user'])): ?>
                 <li>
                     <a
@@ -158,8 +155,7 @@ if(isset($_COOKIE['but'])){
                     >
 
                 </li>
-                <?
-                else: ?>
+                <?php else: ?>
                     <li>
                         <a
                                 href="bin.php"

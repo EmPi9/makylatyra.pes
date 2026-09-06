@@ -1,5 +1,5 @@
 <?php
-include_once './../models/connection.php';
+include_once __DIR__ . '/../models/connection.php';
 $id = $_GET['id'];
 
 function deleteUser($id) {

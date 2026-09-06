@@ -1,5 +1,5 @@
 <?php
-include_once '../models/store.php';
+include_once __DIR__ . '/../models/store.php';
 
 $time_bilet = $_POST['time_bilet'];
 $place_bilet = $_POST['place_bilet'];

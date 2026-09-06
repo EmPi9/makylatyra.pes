@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     </li><!-- след продкут -->
-                    <?endforeach;?>
+                    <?php endforeach; ?>
                 </ul>
             </div>
         </div>
@@ -67,7 +67,7 @@
 
     <?php else: ?>
         <p class="text-center text-xl font-medium pb-16">Корзина пустая</p>
-    <? endif; ?>
+    <?php endif; ?>
     <?php if (!empty($_SESSION['cart'])): ?>
     <div class="border-t border-gray-200 py-6 px-4 sm:px-6">
         <div class="flex justify-between text-base font-medium text-gray-900">
@@ -149,7 +149,7 @@
                         hover:text-[#F56E1E]">
           ОПЛАТИТЬ <?= $_SESSION['cart.sum'] ?> ₽
                         </div>
-                        <? endif; ?>
+                        <?php endif; ?>
                         </div>
                     </div>
                     </form>
